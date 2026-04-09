@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harsh Saraf — Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --bg2: #f3f1ee;
+    --bg3: #eceae5;
+    --border: #e0ddd8;
+    --border2: #ccc9c2;
+    --text: #1a1916;
+    --muted: #6b6860;
+    --dim: #a8a49c;
+    --accent: #2563eb;
+    --accent-light: #eff4ff;
+    --accent2: #0f766e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    height: 58px;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 7rem 2rem 5rem;
+    position: relative;
+    background: var(--bg);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 52px 52px;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .hero > * { position: relative; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid #bfdbfe;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(0.65); }
+  }
+
+  .hero-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero-name em { font-style: italic; color: var(--accent); }
+
+  .hero-subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-subtitle span { font-size: 0.9rem; color: var(--muted); }
+  .hero-subtitle .dot { width: 3px; height: 3px; background: var(--dim); border-radius: 50%; }
+
+  .hero-tagline {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 500px;
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.42s ease both;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.72rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 7px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.18s;
+    font-family: 'Geist', sans-serif;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary { background: var(--text); color: #fff; }
+  .btn-primary:hover { background: #333; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+  .btn-outline {
+    background: #fff;
+    color: var(--text);
+    border: 1px solid var(--border2);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .btn-outline:hover { border-color: var(--text); transform: translateY(-1px); }
+
+  .scroll-line {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    animation: fadeUp 0.6s 1s ease both;
+  }
+
+  .scroll-line span {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .scroll-line::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(var(--dim), transparent);
+  }
+
+  /* SECTION STRUCTURE */
+  .section {
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-eyebrow span {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.67rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.2rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    line-height: 1.1;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .photo-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    position: sticky;
+    top: 5rem;
+  }
+
+  .photo-box {
+    width: 200px;
+    height: 220px;
+    border-radius: 12px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .photo-box .initials {
+    font-family: 'Instrument Serif', serif;
+    font-size: 3.5rem;
+    color: var(--dim);
+    font-style: italic;
+  }
+
+  .photo-box img { width: 100%; height: 100%; object-fit: cover; }
+
+  .social-row { display: flex; gap: 0.5rem; }
+
+  .social-btn {
+    width: 34px; height: 34px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+
+  .social-btn:hover { border-color: var(--text); color: var(--text); }
+
+  .about-body p {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 1.1rem;
+  }
+
+  .about-body strong { color: var(--text); font-weight: 500; }
+
+  .about-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+  }
+
+  .chip {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.8rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+  }
+
+  /* STACK */
+  .stack-band {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 5.5rem 2rem;
+  }
+
+  .stack-inner { max-width: 1100px; margin: 0 auto; }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 0.7rem;
+  }
+
+  .stack-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    transition: box-shadow 0.15s, border-color 0.15s;
+  }
+
+  .stack-card:hover {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    border-color: var(--border2);
+  }
+
+  .stack-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+  .stack-name { font-size: 0.82rem; font-weight: 500; }
+  .stack-type { font-size: 0.65rem; color: var(--dim); font-family: 'Geist Mono', monospace; margin-top: 1px; }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .proj-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .proj-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+    transform: translateY(-3px);
+  }
+
+  .proj-thumb {
+    height: 175px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .proj-thumb-blue { background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 60%, #e0f2fe 100%); }
+  .proj-thumb-gray { background: var(--bg3); }
+
+  .proj-thumb .t-emoji {
+    font-size: 3.5rem;
+    filter: drop-shadow(0 4px 20px rgba(0,0,0,0.12));
+    position: relative;
+    z-index: 1;
+  }
+
+  .t-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.12;
+    background: #2563eb;
+  }
+
+  .proj-body { padding: 1.4rem 1.5rem; }
+
+  .proj-tag {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .proj-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .proj-desc {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 300;
+    margin-bottom: 1.15rem;
+  }
+
+  .proj-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .proj-pills { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+  .pill {
+    font-size: 0.67rem;
+    padding: 0.2rem 0.5rem;
+    background: var(--bg2);
+    border-radius: 4px;
+    color: var(--muted);
+  }
+
+  .proj-arrow {
+    width: 28px; height: 28px;
+    background: var(--bg2);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .proj-card:hover .proj-arrow { background: var(--accent); color: #fff; }
+
+  /* RESUME */
+  .resume-band {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 6rem 2rem;
+  }
+
+  .resume-inner { max-width: 1100px; margin: 0 auto; }
+
+  .dl-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--accent-light);
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .dl-bar p { font-size: 0.85rem; color: var(--accent); font-weight: 500; }
+
+  .exp-list { display: flex; flex-direction: column; }
+
+  .exp-row {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 2.5rem;
+    padding: 2.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exp-row:last-child { border-bottom: none; }
+
+  .exp-logo {
+    width: 36px; height: 36px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .exp-co { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .exp-date { font-family: 'Geist Mono', monospace; font-size: 0.63rem; color: var(--dim); letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+  .exp-loc { font-size: 0.72rem; color: var(--dim); }
+
+  .exp-badge {
+    display: inline-block;
+    font-size: 0.67rem;
+    padding: 0.18rem 0.55rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 4px;
+    font-weight: 500;
+    margin-bottom: 0.65rem;
+  }
+
+  .exp-role { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.85rem; }
+
+  .exp-pts { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .exp-pts li {
+    font-size: 0.875rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.65;
+    padding-left: 1.1rem;
+    position: relative;
+  }
+
+  .exp-pts li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 4rem;
+  }
+
+  .edu-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem;
+    transition: box-shadow 0.15s;
+  }
+
+  .edu-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+
+  .edu-icon { font-size: 1.75rem; margin-bottom: 0.9rem; }
+  .edu-school { font-family: 'Instrument Serif', serif; font-size: 1.1rem; margin-bottom: 0.3rem; line-height: 1.25; }
+  .edu-degree { font-size: 0.82rem; color: var(--muted); font-weight: 300; margin-bottom: 0.4rem; }
+  .edu-period { font-family: 'Geist Mono', monospace; font-size: 0.63rem; color: var(--accent); margin-bottom: 0.9rem; }
+  .edu-notes { font-size: 0.79rem; color: var(--dim); line-height: 1.6; }
+
+  /* CONTACT */
+  .contact-band {
+    background: var(--text);
+    color: #fff;
+    padding: 7rem 2rem;
+    text-align: center;
+  }
+
+  .contact-inner { max-width: 560px; margin: 0 auto; }
+
+  .contact-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 1rem;
+  }
+
+  .contact-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.75rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .contact-title em { font-style: italic; color: #93c5fd; }
+
+  .contact-sub {
+    font-size: 0.95rem;
+    color: #9ca3af;
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-row { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+  .btn-white { background: #fff; color: var(--text); }
+  .btn-white:hover { background: #f3f4f6; }
+
+  .btn-ghost { background: transparent; color: #fff; border: 1px solid #374151; }
+  .btn-ghost:hover { border-color: #6b7280; }
+
+  /* FOOTER */
+  footer {
+    padding: 1.25rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+  }
+
+  footer p { font-family: 'Geist Mono', monospace; font-size: 0.63rem; color: var(--dim); }
+
+  /* ANIM */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    .section { padding: 4rem 1.25rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .photo-wrap { position: static; flex-direction: row; align-items: center; }
+    .exp-row { grid-template-columns: 1fr; gap: 0.75rem; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .stack-band, .resume-band { padding: 4rem 1.25rem; }
+    .hero-name { font-size: 3.2rem; }
+    footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Harsh Saraf</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    Open to PM Roles · 2026
+  </div>
+
+  <h1 class="hero-name">
+    Harsh <em>Saraf</em>
+  </h1>
+
+  <div class="hero-subtitle">
+    <span>Chicago Booth MBA</span>
+    <div class="dot"></div>
+    <span>IIT Kharagpur</span>
+    <div class="dot"></div>
+    <span>AI Product &amp; Strategy</span>
+  </div>
+
+  <p class="hero-tagline">
+    Building intelligent products at the intersection of AI, healthcare, and consumer technology.
+  </p>
+
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      View Projects
+    </a>
+    <button class="btn btn-outline" onclick="downloadResume()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      Download Resume
+    </button>
+  </div>
+
+  <div class="scroll-line"><span>Scroll</span></div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-eyebrow"><span>About</span></div>
+  <h2 class="section-title">The person behind the products</h2>
+
+  <div class="about-grid">
+    <div class="photo-wrap">
+      <div class="photo-box">
+        <!-- Replace with: <img src="your-photo.jpg" alt="Harsh Saraf"> once you have a photo -->
+        <div class="initials">HS</div>
+      </div>
+      <div class="social-row">
+        <a href="mailto:hsaraf@chicagobooth.edu" class="social-btn" title="Email">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <a href="https://github.com/harsh-saraf" target="_blank" class="social-btn" title="GitHub">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+        <a href="tel:3122214612" class="social-btn" title="Call">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.18 19.79 19.79 0 01.22 5.6 2 2 0 012.18 3.4h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 11a16 16 0 006.08 6.08l1.4-1.4a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="about-body">
+      <p>I'm a <strong>product manager and MBA candidate at Chicago Booth</strong>, actively recruiting for full-time PM roles at technology companies. My background spans AI/ML products, digital health, and eCommerce — with experience at <strong>Intuitive Surgical, Abbott Laboratories,</strong> and <strong>Boston Consulting Group</strong>.</p>
+      <p>I bring a rare combination of <strong>engineering depth from IIT Kharagpur</strong>, strategic consulting experience, and hands-on product intuition. I've shipped products used by thousands of surgeons, built AI pipelines from scratch, and managed multi-million dollar P&Ls.</p>
+      <p>I'm most energized working on problems at the intersection of <strong>AI, human behavior, and systems complexity</strong> — whether that's helping a surgeon make better intraoperative decisions, or helping a user find the perfect workout.</p>
+      <p>Outside of product work, I'm a competitive squash player — I represented India in <strong>15+ international tournaments</strong> and reached a career-best national ranking of #10.</p>
+      <div class="about-chips">
+        <span class="chip">AI/ML Products</span>
+        <span class="chip">Digital Health</span>
+        <span class="chip">0→1 Building</span>
+        <span class="chip">User Research</span>
+        <span class="chip">Strategic Roadmapping</span>
+        <span class="chip">eCommerce</span>
+        <span class="chip">Clinical Evidence</span>
+        <span class="chip">Agile / Scrum</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<div class="stack-band" id="stack">
+  <div class="stack-inner">
+    <div class="section-eyebrow"><span>Tech Stack</span></div>
+    <h2 class="section-title">Tools &amp; Technologies</h2>
+    <div class="stack-grid">
+      <div class="stack-card"><div class="stack-icon">🐍</div><div><div class="stack-name">Python</div><div class="stack-type">Language</div></div></div>
+      <div class="stack-card"><div class="stack-icon">⚛️</div><div><div class="stack-name">ReactJS</div><div class="stack-type">Frontend</div></div></div>
+      <div class="stack-card"><div class="stack-icon">🗄️</div><div><div class="stack-name">SQL</div><div class="stack-type">Database</div></div></div>
+      <div class="stack-card"><div class="stack-icon">🤖</div><div><div class="stack-name">AI / ML</div><div class="stack-type">Core Skill</div></div></div>
+      <div class="stack-card"><div class="stack-icon">🧠</div><div><div class="stack-name">OpenAI Platform</div><div class="stack-type">AI API</div></div></div>
+      <div class="stack-card"><div class="stack-icon">🎨</div><div><div class="stack-name">Figma</div><div class="stack-type">Design</div></div></div>
+      <div class="stack-card"><div class="stack-icon">📊</div><div><div class="stack-name">Tableau</div><div class="stack-type">Analytics</div></div></div>
+      <div class="stack-card"><div class="stack-icon">🔀</div><div><div class="stack-name">Alteryx</div><div class="stack-type">Data Prep</div></div></div>
+      <div class="stack-card"><div class="stack-icon">💎</div><div><div class="stack-name">Ruby</div><div class="stack-type">Language</div></div></div>
+      <div class="stack-card"><div class="stack-icon">☕</div><div><div class="stack-name">Java</div><div class="stack-type">Language</div></div></div>
+      <div class="stack-card"><div class="stack-icon">🛠️</div><div><div class="stack-name">Jira</div><div class="stack-type">PM Tool</div></div></div>
+      <div class="stack-card"><div class="stack-icon">🐙</div><div><div class="stack-name">Git</div><div class="stack-type">Version Control</div></div></div>
+      <div class="stack-card"><div class="stack-icon">🛍️</div><div><div class="stack-name">Shopify</div><div class="stack-type">eCommerce</div></div></div>
+      <div class="stack-card"><div class="stack-icon">💻</div><div><div class="stack-name">C++</div><div class="stack-type">Language</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-eyebrow"><span>Projects</span></div>
+  <h2 class="section-title">What I've been building</h2>
+
+  <div class="projects-grid">
+    <a href="https://github.com/harsh-saraf/workout_generator" target="_blank" class="proj-card">
+      <div class="proj-thumb proj-thumb-blue">
+        <div class="t-circle" style="width:200px;height:200px;top:-60px;right:-60px;"></div>
+        <div class="t-circle" style="width:100px;height:100px;bottom:-20px;left:10px;opacity:0.08;"></div>
+        <div class="t-emoji">🏋️</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tag">Fitness · Social · Personalization</div>
+        <div class="proj-name">WorkoutGen</div>
+        <p class="proj-desc">Create and customize your own workout routines, then connect with friends to see what they're training. Social fitness, done simply.</p>
+        <div class="proj-foot">
+          <div class="proj-pills">
+            <span class="pill">React</span>
+            <span class="pill">Node.js</span>
+            <span class="pill">Social</span>
+          </div>
+          <div class="proj-arrow">↗</div>
+        </div>
+      </div>
+    </a>
+
+    <div class="proj-card" style="opacity:0.45; pointer-events:none;">
+      <div class="proj-thumb proj-thumb-gray">
+        <div class="t-emoji" style="opacity:0.35; font-size:2.5rem;">🚀</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tag">Coming Soon</div>
+        <div class="proj-name">Next Project</div>
+        <p class="proj-desc">Currently building and documenting more. Check back soon.</p>
+        <div class="proj-foot">
+          <div class="proj-pills"><span class="pill">TBD</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<div class="resume-band" id="resume">
+  <div class="resume-inner">
+    <div class="section-eyebrow"><span>Resume</span></div>
+    <h2 class="section-title">Work Experience</h2>
+
+    <div class="dl-bar">
+      <p>📄 &nbsp;Want the full PDF version of my resume?</p>
+      <button class="btn btn-primary" onclick="downloadResume()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Download Resume
+      </button>
+    </div>
+
+    <div class="exp-list">
+      <!-- Intuitive -->
+      <div class="exp-row">
+        <div>
+          <div class="exp-logo">🤖</div>
+          <div class="exp-co">Intuitive Surgical</div>
+          <div class="exp-date">Jun 2025 – Aug 2025</div>
+          <div class="exp-loc">San Francisco Bay Area, CA</div>
+        </div>
+        <div>
+          <div class="exp-badge">Medical Devices · AI/ML</div>
+          <div class="exp-role">Product Manager MBA Intern</div>
+          <ul class="exp-pts">
+            <li>Built strategic roadmap for surgical stapler portfolio expansion via 40+ surgeon interviews; proposed 3 new configurations projecting 20% incremental YoY growth.</li>
+            <li>Led AI/ML feature pipeline for Case Insights — turning surgical procedure data into actionable surgeon performance insights; recommended 10+ features for the next 3-year roadmap.</li>
+            <li>Integrated ML-driven procedure prediction and clinical segmentation features; collaborated with data engineers and UX designers for deployment.</li>
+            <li>Redesigned the surgeon-interview workflow, compressing cycle time from 3 weeks → 4 days.</li>
+            <li>Formulated clinical evidence strategy for a 1,000+ patient trial; secured $18M in funding.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Wordsworth -->
+      <div class="exp-row">
+        <div>
+          <div class="exp-logo">🛒</div>
+          <div class="exp-co">Wordsworth AI</div>
+          <div class="exp-date">Feb 2024 – Jun 2024</div>
+          <div class="exp-loc">Bengaluru, India</div>
+        </div>
+        <div>
+          <div class="exp-badge">Agentic AI · eCommerce</div>
+          <div class="exp-role">Product Manager</div>
+          <ul class="exp-pts">
+            <li>Shipped 4 core features (layout framework, content auto-population, media A/B testing, review scoring) — cutting page creation time by 40% and lifting user satisfaction by 25%.</li>
+            <li>Delivered proof-of-concept in 8 weeks; led MVP workflow and Figma user journeys cross-functionally with engineering and design.</li>
+            <li>Built AI signal extraction pipeline auto-generating 21 optimized pages; boosted client engagement by 35%.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Abbott -->
+      <div class="exp-row">
+        <div>
+          <div class="exp-logo">💊</div>
+          <div class="exp-co">Abbott Laboratories</div>
+          <div class="exp-date">Jun 2021 – Feb 2024</div>
+          <div class="exp-loc">Mumbai, India</div>
+        </div>
+        <div>
+          <div class="exp-badge">Healthcare · Digital Health</div>
+          <div class="exp-role">Product Manager → Strategic Projects Manager, CEO's Office</div>
+          <ul class="exp-pts">
+            <li>Revamped nasal spray design with bag-on-valve technology; reduced adverse reactions by 35%, re-launched in 3.5 months — one of Abbott's fastest time-to-markets.</li>
+            <li>Integrated patient support programs into Abbott's a:care app; increased adoption by 45% and medication adherence by 30%.</li>
+            <li>Managed $4M P&L for 5 respiratory brands, guided 500-person salesforce, synthesized 100+ physician interviews into growth strategies across 4 regions.</li>
+            <li>Led Smart Buddy AI agent integration for 2,500 salesforce users; boosted productivity by 30%.</li>
+            <li>Partnered with CEO on 5-year strategy; drove 12% YoY growth and cut new product launch cycles from 14 → 10 months.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- BCG -->
+      <div class="exp-row">
+        <div>
+          <div class="exp-logo">📈</div>
+          <div class="exp-co">Boston Consulting Group</div>
+          <div class="exp-date">Sep 2019 – Jun 2021</div>
+          <div class="exp-loc">Mumbai, India</div>
+        </div>
+        <div>
+          <div class="exp-badge">Strategy · Technology</div>
+          <div class="exp-role">Associate</div>
+          <ul class="exp-pts">
+            <li>Built hyper-personalized marketing stack; segmented 2M+ users into 10 personas for real-time contextual messaging — boosting app engagement by 35%.</li>
+            <li>Built Kafka-based transaction categorizer (1M+ daily transactions); designed spend analytics UIs driving 15% sales growth.</li>
+            <li>Designed first-of-its-kind multi-channel delivery network; received integration sign-off from Adobe and Salesforce engineers.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section-eyebrow" style="margin-top:4rem;"><span>Education</span></div>
+    <h2 class="section-title" style="margin-top:0.75rem;">Academic Background</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-school">University of Chicago<br>Booth School of Business</div>
+        <div class="edu-period">Sep 2024 – Jun 2026</div>
+        <div class="edu-degree">Master of Business Administration</div>
+        <div class="edu-notes">Concentrations: Applied AI, Strategic Management, Entrepreneurship, Healthcare<br><br>Student Groups: Booth Technology Group · AI Group · Healthcare Club · Racquets Club</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">⚙️</div>
+        <div class="edu-school">IIT Kharagpur</div>
+        <div class="edu-period">Jul 2015 – May 2019</div>
+        <div class="edu-degree">B.Tech in Mechanical Engineering · GPA 8.60/10 · Top 5%</div>
+        <div class="edu-notes">Thesis (Distinction): Particle Swarm Optimization to reduce gear synchronization time by 30%.<br><br>Operations Intern at ITC Limited: +40% shift productivity, −5% wastage in luxury chocolate line.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-band" id="contact">
+  <div class="contact-inner">
+    <p class="contact-label">Let's Connect</p>
+    <h2 class="contact-title">Open to <em>PM Roles</em><br>in Tech</h2>
+    <p class="contact-sub">Actively recruiting for full-time product manager roles at technology companies. If you're building something interesting, I'd love to talk.</p>
+    <div class="contact-row">
+      <a href="mailto:hsaraf@chicagobooth.edu" class="btn btn-white">hsaraf@chicagobooth.edu</a>
+      <a href="https://github.com/harsh-saraf" target="_blank" class="btn btn-ghost">GitHub</a>
+      <a href="tel:3122214612" class="btn btn-ghost">(312) 221-4612</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Harsh Saraf · Chicago, IL</p>
+  <p>Built with HTML · Hosted on GitHub Pages</p>
+</footer>
+
+<script>
+function downloadResume() {
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Harsh Saraf — Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Geist',sans-serif;max-width:720px;margin:36px auto;color:#1a1916;font-size:13px;line-height:1.5;padding:0 20px}
+    h1{font-size:26px;margin-bottom:3px;font-weight:600}
+    .contact{color:#6b6860;font-size:11.5px;margin-bottom:18px}
+    h2{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#2563eb;border-bottom:1px solid #e0ddd8;padding-bottom:3px;margin:18px 0 9px;font-weight:600}
+    .row{margin-bottom:12px}
+    .rh{display:flex;justify-content:space-between;align-items:baseline}
+    .co{font-weight:600;font-size:13px}
+    .dt{font-size:11px;color:#6b6860}
+    .rl{color:#6b6860;font-size:12px;margin:1px 0 5px}
+    ul{padding-left:14px;margin:0}li{margin-bottom:2px;color:#444;font-size:12.5px}
+    .skills{display:flex;flex-wrap:wrap;gap:5px}
+    .sk{background:#f3f1ee;padding:2px 9px;border-radius:4px;font-size:11px;color:#444}
+    @media print{body{margin:20px}}
+  </style></head><body>
+  <h1>Harsh Saraf</h1>
+  <div class="contact">Chicago IL, 60601 &nbsp;·&nbsp; (312) 221-4612 &nbsp;·&nbsp; hsaraf@chicagobooth.edu &nbsp;·&nbsp; github.com/harsh-saraf</div>
+
+  <h2>Education</h2>
+  <div class="row"><div class="rh"><span class="co">University of Chicago, Booth School of Business</span><span class="dt">Sep 2024 – Jun 2026</span></div>
+  <div class="rl">MBA · Concentrations: Applied AI, Strategic Management, Entrepreneurship, Healthcare</div></div>
+  <div class="row"><div class="rh"><span class="co">IIT Kharagpur</span><span class="dt">Jul 2015 – May 2019</span></div>
+  <div class="rl">B.Tech in Mechanical Engineering · GPA 8.60/10 · Top 5% of class</div></div>
+
+  <h2>Experience</h2>
+  <div class="row"><div class="rh"><span class="co">Intuitive Surgical</span><span class="dt">Jun 2025 – Aug 2025 · San Francisco Bay Area, CA</span></div>
+  <div class="rl">Product Manager MBA Intern</div>
+  <ul><li>Built strategic roadmap for surgical stapler portfolio via 40+ surgeon interviews; proposed 3 configs projecting 20% incremental YoY growth</li>
+  <li>Led AI/ML feature pipeline for Case Insights; recommended 10+ features for next 3-year roadmap</li>
+  <li>Integrated ML-driven procedure prediction and clinical segmentation; collaborated with data engineers &amp; UX for deployment</li>
+  <li>Redesigned surgeon-interview workflow from 3 weeks → 4 days; secured $18M for clinical evidence strategy</li></ul></div>
+
+  <div class="row"><div class="rh"><span class="co">Wordsworth AI</span><span class="dt">Feb 2024 – Jun 2024 · Bengaluru, India</span></div>
+  <div class="rl">Product Manager</div>
+  <ul><li>Shipped 4 core features cutting e-commerce page creation time by 40%, lifting user satisfaction by 25%</li>
+  <li>Delivered proof-of-concept in 8 weeks; built AI pipeline auto-generating 21 optimized pages, boosting engagement 35%</li></ul></div>
+
+  <div class="row"><div class="rh"><span class="co">Abbott Laboratories</span><span class="dt">Jun 2021 – Feb 2024 · Mumbai, India</span></div>
+  <div class="rl">Product Manager → Strategic Projects Manager, CEO's Office</div>
+  <ul><li>Managed $4M P&amp;L for 5 respiratory brands; guided 500-person salesforce across 4 regions</li>
+  <li>Re-launched nasal spray with bag-on-valve tech in 3.5 months; increased a:care app adoption 45%, adherence 30%</li>
+  <li>Led Smart Buddy AI agent for 2,500 salesforce users; boosted productivity 30%</li>
+  <li>Partnered with CEO on 5-year strategy; drove 12% YoY growth, cut launch cycles 14 → 10 months</li></ul></div>
+
+  <div class="row"><div class="rh"><span class="co">Boston Consulting Group</span><span class="dt">Sep 2019 – Jun 2021 · Mumbai, India</span></div>
+  <div class="rl">Associate</div>
+  <ul><li>Segmented 2M+ users into 10 personas; boosted app engagement 35% via real-time personalized messaging</li>
+  <li>Built Kafka-based transaction categorizer (1M+ daily); drove 15% sales growth via cross-sell analytics</li>
+  <li>Designed first-of-its-kind multi-channel delivery network; sign-off from Adobe &amp; Salesforce engineers</li></ul></div>
+
+  <h2>Technical Skills</h2>
+  <div class="skills"><span class="sk">Python</span><span class="sk">ReactJS</span><span class="sk">SQL</span><span class="sk">AI/ML</span><span class="sk">OpenAI Platform</span><span class="sk">Figma</span><span class="sk">Tableau</span><span class="sk">Alteryx</span><span class="sk">Ruby</span><span class="sk">Java</span><span class="sk">C++</span><span class="sk">Git</span><span class="sk">Jira</span><span class="sk">Liquid</span><span class="sk">Shopify</span></div>
+
+  <h2>Additional</h2>
+  <ul><li>Launched D2C apparel Shopify store; $5K incremental annual revenue at 120% ROAS</li>
+  <li>Represented India in 15+ international U-15 and U-17 squash tournaments; career-best national rank #10</li></ul>
+  </body></html>`;
+
+  const w = window.open('', '_blank');
+  w.document.write(html);
+  w.document.close();
+  w.onload = () => { w.focus(); w.print(); };
+}
+
+// Active nav link on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.nav-links a').forEach(a => a.style.color = '');
+      const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (a) a.style.color = 'var(--text)';
+    }
+  });
+}, { threshold: 0.35 });
+
+document.querySelectorAll('[id]').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
