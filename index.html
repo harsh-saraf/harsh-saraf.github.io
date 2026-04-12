@@ -781,6 +781,92 @@
     .stack-grid,
     .projects-grid { grid-template-columns: 1fr; }
   }
+  /* Video modal */
+  .proj-video-wrap {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .proj-video-wrap .play-btn {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.2s ease;
+    z-index: 2;
+  }
+
+  .proj-video-wrap:hover .play-btn {
+    background: rgba(0, 0, 0, 0.32);
+  }
+
+  .play-btn svg {
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .proj-video-wrap:hover .play-btn svg {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .video-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 11, 18, 0.82);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+
+  .video-modal-overlay.open {
+    display: flex;
+  }
+
+  .video-modal {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    background: #000;
+  }
+
+  .video-modal video {
+    display: block;
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+
+  .video-modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: background 0.15s ease;
+    z-index: 10;
+  }
+
+  .video-modal-close:hover {
+    background: rgba(255,255,255,0.3);
+  }
 </style>
 </head>
 <body>
@@ -901,7 +987,7 @@
     </a>
 
     <div class="proj-card">
-      <div class="proj-thumb" style="padding:0;">
+      <div class="proj-thumb proj-video-wrap" data-video="assets/videos/Investor Agent.mp4">
         <video
           src="assets/videos/Investor Agent.mp4"
           autoplay
@@ -910,6 +996,13 @@
           playsinline
           style="width:100%;height:100%;object-fit:cover;display:block;"
         ></video>
+        <div class="play-btn">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+            <circle cx="26" cy="26" r="26" fill="rgba(255,255,255,0.18)"/>
+            <circle cx="26" cy="26" r="22" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="21,17 39,26 21,35" fill="#1f3c88"/>
+          </svg>
+        </div>
       </div>
       <div class="proj-body">
         <div class="proj-tag">AI · Finance · RAG</div>
@@ -926,7 +1019,7 @@
     </div>
 
     <a href="https://github.com/harsh-saraf/morning-news-agent" target="_blank" rel="noopener noreferrer" class="proj-card">
-      <div class="proj-thumb" style="padding:0;">
+      <div class="proj-thumb proj-video-wrap" data-video="assets/videos/News Agent.mp4">
         <video
           src="assets/videos/News Agent.mp4"
           autoplay
@@ -935,6 +1028,13 @@
           playsinline
           style="width:100%;height:100%;object-fit:cover;display:block;"
         ></video>
+        <div class="play-btn">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+            <circle cx="26" cy="26" r="26" fill="rgba(255,255,255,0.18)"/>
+            <circle cx="26" cy="26" r="22" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="21,17 39,26 21,35" fill="#1f3c88"/>
+          </svg>
+        </div>
       </div>
       <div class="proj-body">
         <div class="proj-tag">AI · News · Automation</div>
@@ -1079,6 +1179,43 @@
     </footer>
   </div>
 </div>
+
+<!-- Video modal -->
+<div class="video-modal-overlay" id="videoModal">
+  <div class="video-modal">
+    <button class="video-modal-close" id="videoModalClose" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/>
+      </svg>
+    </button>
+    <video id="videoModalPlayer" controls playsinline style="display:block;width:100%;max-height:80vh;object-fit:contain;"></video>
+  </div>
+</div>
+
+<script>
+const modal = document.getElementById('videoModal');
+const modalPlayer = document.getElementById('videoModalPlayer');
+
+document.querySelectorAll('.proj-video-wrap').forEach(wrap => {
+  wrap.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+    modalPlayer.src = wrap.dataset.video;
+    modalPlayer.play();
+    modal.classList.add('open');
+  });
+});
+
+function closeModal() {
+  modal.classList.remove('open');
+  modalPlayer.pause();
+  modalPlayer.src = '';
+}
+
+document.getElementById('videoModalClose').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
 
 <script>
 const observer = new IntersectionObserver(entries => {
